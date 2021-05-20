@@ -17,3 +17,10 @@ JDBC Authentication
 
 This way spring will authenticate our users from database rather than doing in-memory authentication which we did in earlier project.
 
+All authentication manager like JDBC and LDAP, calls loadUserByUserName() method of UserDetailsService which is Spring's own implementation.
+so in return the principal returned by AuthenticationManager is basically UserDetails.
+In real we are not dealing with UserDetailsService here, but internally user are picked from database using loadUserByUsername() method.
+
+If we want to create our own implementaion of AuthenticationManager, we have to create our own UserDetailsService.
+This can be seen in spring-security-jpa and spring-security-jwt projects.
+
